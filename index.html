@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nika ❤️ My Love</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(circle, #300010, #100008 55%, #000);
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+
+h1 {
+    font-size: clamp(28px, 6vw, 48px);
+    color: #ff477e;
+    text-shadow: 0 0 10px #ff0055, 0 0 30px #ff0055,
+                 0 0 60px #ff003c;
+    animation: titleGlow 2s infinite alternate;
+    z-index: 5;
+    text-align: center;
+    margin-bottom: 75px;
+}
+
+.heart {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: #ff004c;
+    transform: rotate(-45deg);
+    animation: beat 1s infinite;
+    box-shadow: 0 0 25px #ff004c, 0 0 60px #ff004c;
+    z-index: 2;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    width: 100px;
+    height: 100px;
+    background: #ff004c;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.heart::before {
+    top: -50px;
+    left: 0;
+}
+
+.heart::after {
+    left: 50px;
+    top: 0;
+}
+
+.message {
+    margin-top: 80px;
+    font-size: 18px;
+    letter-spacing: 3px;
+    color: #ffc1d5;
+    text-shadow: 0 0 15px #ff0055;
+    z-index: 5;
+    text-align: center;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -60px;
+    color: #ff1744;
+    text-shadow: 0 0 10px #ff1744, 0 0 25px #ff1744;
+    animation: floatUp linear infinite;
+    user-select: none;
+    pointer-events: none;
+}
+
+.spark {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #ff8eae;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #ff1744;
+    animation: sparkle 2s infinite alternate;
+}
+
+@keyframes beat {
+    0%, 100% {
+        transform: rotate(-45deg) scale(1);
+    }
+    50% {
+        transform: rotate(-45deg) scale(1.2);
+    }
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes titleGlow {
+    from { filter: brightness(0.8); }
+    to { filter: brightness(1.5); }
+}
+
+@keyframes sparkle {
+    from { opacity: 0.2; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1.8); }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Nika I Love You ❤️</h1>
+
+<div class="heart"></div>
+
+<div class="message">
+    YOU ARE MY EVERYTHING
+</div>
+
+<script>
+const heartSymbols = ["❤️", "💖", "💕", "💗", "💘", "♥"];
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "floating-heart";
+    heart.textContent =
+        heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 35) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 7) + "s";
+    heart.style.animationDelay = Math.random() * 2 + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 12000);
+}
+
+function createSpark() {
+    const spark = document.createElement("div");
+    spark.className = "spark";
+    spark.style.left = Math.random() * 100 + "vw";
+    spark.style.top = Math.random() * 100 + "vh";
+    spark.style.animationDelay = Math.random() * 2 + "s";
+
+    document.body.appendChild(spark);
+}
+
+setInterval(createHeart, 180);
+for (let i = 0; i < 45; i++) createHeart();
+for (let i = 0; i < 70; i++) createSpark();
+</script>
+
+</body>
+</html>
